@@ -1,2 +1,2 @@
 # Cells3D
-Check connection probabilities between cells
+Checks connection probabilities between cells
