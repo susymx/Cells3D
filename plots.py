@@ -24,7 +24,7 @@ def drawNodes(cells, ax, tags):
         colors.append((cell.segment+1)/255)
   
         # Plots those coordinates with given color and label
-    ax.scatter(listX, listY, listZ, marker='.',c=colors, alpha=1, edgecolor='none', label='Dorsal medial', zorder=3)
+    ax.scatter(listX, listY, listZ, marker='.',c=colors, alpha=1, label='Dorsal medial', zorder=3)
    
     if tags:    # If true then plot each node name, recommended only for small references
        for i, tag in enumerate(range(len(listX))):
@@ -87,4 +87,4 @@ def markThisCells(toDraw, cells, color, ax):
         listY.append(temp.y)
         listZ.append(temp.z)
     if len(listX) > 0:          # If we added some cells then plot those with label
-        ax.scatter(listX, listY,listZ, marker='.', c=color, alpha=1, edgecolor='none', zorder=5, label='Isolated cell')
+        ax.scatter(listX, listY,listZ, marker='.', c=color, alpha=1, zorder=5, label='Isolated cell')
