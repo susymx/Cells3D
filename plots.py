@@ -28,8 +28,8 @@ def drawNodes(cells, ax, tags):
    
     if tags:    # If true then plot each node name, recommended only for small references
        for i, tag in enumerate(range(len(listX))):
-              ax.annotate(tag, (listX[i], listY[i]))
-
+              ax.text(listX[i], listY[i],listZ[i],tag)
+            
 # This function puts on ax each valid edge in a given binary matrix
 # Receives a binary matrix, a list of cells and a matplotlib object ax
 # Does not return anything but draws all the edges in ax
