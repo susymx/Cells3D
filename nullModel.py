@@ -110,21 +110,23 @@ def generateCell3SD(randRad,rx,ry,nSlice,sliceDistance,ctrl):
 # The boolean ctrl choose a equation for the number of cells in each slice. True means that the model is control.
 # False means that the model is AVP.
 # Y=B0 + B1*X + B2*X^2. Interpolation with four slices. X is the bregma coordinate. 
-# The coordinate is from 1 mm to -0.4 mm 
+# The coordinate is from -0.4 mm to 1 mm 
 # Y is the number of cells that will be in 50 μm. SliceDistance must be at least 50 μm
-def generateCell3SD(randRad,rx,ry,nSlice,sliceDistance,ctrl):
+# zi is the initial z and zf is the final z
+def generateCell3SD(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
     h = rx/2                                # Calculates the center of the ellipse, no negative
     k = ry/2 
     nullCells =[]
     nullCells.append(Cell3D(0,0,0,0,0,0))
-    for s in range(nSlice): 
-     rz=(s+1)
+    s=0
+    while zi <= zf: 
+     rz=zi/1000.0
      if ctrl:
          c=round( 503.5 - 4.644*rz - 132.7*(rz**2))
      else:
          c=round( 223.1 + 64.52*rz + 141.0*(rz**2))
      for i in range(c):               # Iterates over the given range
-        name = name = i *rz                           # To get the name of each cell
+        name = name = i *s                           # To get the name of each cell
         if randRad:                         # True if we want random radius
             radius = random.randint(125, 150)   # Random radius
         else:
@@ -135,9 +137,11 @@ def generateCell3SD(randRad,rx,ry,nSlice,sliceDistance,ctrl):
         while not validPoint(h, k, rx, ry, coordX, coordY): # Find a valid coord
             coordX = random.randint(0, rx)                      # Generates at random the coords
             coordY = random.randint(0, ry)
-            coordZ = random.randint((rz-1)*sliceDistance, rz*sliceDistance-1)
+            coordZ = random.randint(zi,zi+50)
         newCell = Cell3D(coordX, coordY,coordZ, name, s, radius) # When valid coord, creates a new cell
         nullCells.append(newCell)                           # Append that cell to the list
+        zi=zi+50+sliceDistance
+       s=s+1
     return nullCells
 
 # Auxiliary function to calculate the minor radius of an ellipse when knowing everything else
