@@ -113,7 +113,7 @@ def generateCell3SD(randRad,rx,ry,nSlice,sliceDistance,ctrl):
 # The coordinate is from -0.4 mm to 1 mm 
 # Y is the number of cells that will be in 50 μm. SliceDistance must be at least 50 μm
 # zi is the initial z and zf is the final z
-def generateCell3SD(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
+def generateCell3B(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
     h = rx/2                                # Calculates the center of the ellipse, no negative
     k = ry/2 
     nullCells =[]
