@@ -141,7 +141,7 @@ def generateCell3SD(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
         newCell = Cell3D(coordX, coordY,coordZ, name, s, radius) # When valid coord, creates a new cell
         nullCells.append(newCell)                           # Append that cell to the list
         zi=zi+50+sliceDistance
-       s=s+1
+     s=s+1
     return nullCells
 
 # Auxiliary function to calculate the minor radius of an ellipse when knowing everything else
