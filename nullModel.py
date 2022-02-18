@@ -121,25 +121,25 @@ def generateCell3DB(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
     s=0
     while zi <= zf: 
       rz=zi/1000.0
-        if ctrl:
-          c=round( 503.5 - 4.644*rz - 132.7*(rz**2))
+      if ctrl:
+        c=round( 503.5 - 4.644*rz - 132.7*(rz**2))
+      else:
+        c=round( 223.1 + 64.52*rz + 141.0*(rz**2))
+      for i in range(c):               # Iterates over the given range
+        name = name = i *s                           # To get the name of each cell
+        if randRad:                         # True if we want random radius
+          radius = random.randint(125, 150)   # Random radius
         else:
-          c=round( 223.1 + 64.52*rz + 141.0*(rz**2))
-        for i in range(c):               # Iterates over the given range
-          name = name = i *s                           # To get the name of each cell
-          if randRad:                         # True if we want random radius
-            radius = random.randint(125, 150)   # Random radius
-          else:
-            radius = 125                        # Fixed value
-          coordX = 0                          # Initial foo coords at x
-          coordY = 0 
+          radius = 125                        # Fixed value
+        coordX = 0                          # Initial foo coords at x
+        coordY = 0 
                                 # Initial foo coords at y
-          while not validPoint(h, k, rx, ry, coordX, coordY): # Find a valid coord
-            coordX = random.randint(0, rx)                      # Generates at random the coords
-            coordY = random.randint(0, ry)
-            coordZ = random.randint(zi,zi+50)
-          newCell = Cell3D(coordX, coordY,coordZ, name, s, radius) # When valid coord, creates a new cell
-          nullCells.append(newCell)                           # Append that cell to the list
+        while not validPoint(h, k, rx, ry, coordX, coordY): # Find a valid coord
+          coordX = random.randint(0, rx)                      # Generates at random the coords
+          coordY = random.randint(0, ry)
+          coordZ = random.randint(zi,zi+50)
+        newCell = Cell3D(coordX, coordY,coordZ, name, s, radius) # When valid coord, creates a new cell
+        nullCells.append(newCell)                           # Append that cell to the list
       zi=zi+50+sliceDistance
       s=s+1
     return nullCells
