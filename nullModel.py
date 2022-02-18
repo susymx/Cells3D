@@ -140,7 +140,7 @@ def generateCell3SD(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
             coordZ = random.randint(zi,zi+50)
         newCell = Cell3D(coordX, coordY,coordZ, name, s, radius) # When valid coord, creates a new cell
         nullCells.append(newCell)                           # Append that cell to the list
-        zi=zi+50+sliceDistance
+     zi=zi+50+sliceDistance
      s=s+1
     return nullCells
 
