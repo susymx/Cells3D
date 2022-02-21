@@ -77,6 +77,7 @@ def generateCell3DS(randRad,rx,ry,nSlice,sliceDistance,ctrl):
     k = ry/2 
     nullCells =[]
     nullCells.append(Cell3D(0,0,0,0,0,0))
+    name=1
     for s in range(nSlice): 
      rz=(s+1)
      if ctrl:
@@ -84,7 +85,6 @@ def generateCell3DS(randRad,rx,ry,nSlice,sliceDistance,ctrl):
      else:
          c=round( 195.6 + 204.6*rz - 33.75*(rz**2))
      for i in range(c):               # Iterates over the given range
-        name = name = i *rz                           # To get the name of each cell
         if randRad:                         # True if we want random radius
             radius = random.randint(125, 150)   # Random radius
         else:
@@ -98,6 +98,7 @@ def generateCell3DS(randRad,rx,ry,nSlice,sliceDistance,ctrl):
             coordZ = random.randint((rz-1)*sliceDistance, rz*sliceDistance-1)
         newCell = Cell3D(coordX, coordY,coordZ, name, s, radius) # When valid coord, creates a new cell
         nullCells.append(newCell)                           # Append that cell to the list
+        name=name+1
     return nullCells
 
 # This function creates a list of Cells. 
@@ -119,6 +120,7 @@ def generateCell3DB(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
     nullCells =[]
     nullCells.append(Cell3D(0,0,0,0,0,0))
     s=1
+    name=1
     while zi <= zf: 
       rz=zi/1000.0
       if ctrl:
@@ -126,7 +128,6 @@ def generateCell3DB(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
       else:
         c=round( 223.1 + 64.52*rz + 141.0*(rz**2))
       for i in range(c):               # Iterates over the given range
-        name = name = i *s                           # To get the name of each cell
         if randRad:                         # True if we want random radius
           radius = random.randint(125, 150)   # Random radius
         else:
@@ -140,6 +141,7 @@ def generateCell3DB(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
           coordZ = random.randint(zi,zi+50)
         newCell = Cell3D(coordX, coordY,coordZ, name, s-1, radius) # When valid coord, creates a new cell
         nullCells.append(newCell)                           # Append that cell to the list
+        name=name+1  # To get the name of each cell
       zi=zi+50+sliceDistance
       s=s+1
     return nullCells
