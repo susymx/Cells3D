@@ -118,7 +118,7 @@ def generateCell3DB(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
     k = ry/2 
     nullCells =[]
     nullCells.append(Cell3D(0,0,0,0,0,0))
-    s=0
+    s=1
     while zi <= zf: 
       rz=zi/1000.0
       if ctrl:
@@ -138,7 +138,7 @@ def generateCell3DB(randRad,rx,ry,zi,zf,sliceDistance,ctrl):
           coordX = random.randint(0, rx)                      # Generates at random the coords
           coordY = random.randint(0, ry)
           coordZ = random.randint(zi,zi+50)
-        newCell = Cell3D(coordX, coordY,coordZ, name, s, radius) # When valid coord, creates a new cell
+        newCell = Cell3D(coordX, coordY,coordZ, name, s-1, radius) # When valid coord, creates a new cell
         nullCells.append(newCell)                           # Append that cell to the list
       zi=zi+50+sliceDistance
       s=s+1
